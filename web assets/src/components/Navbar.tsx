@@ -1,88 +1,148 @@
-import React from "react";
-import favicon from "../assets/favicon.png";
-import { BiSearch } from "react-icons/bi";
+import React, { useRef, useState } from "react";
+import logo_small from "../assets/favicon.png";
+import logo_White from "../assets/recognitW.png";
+import { BiSearch, BiMenu, BiX } from "react-icons/bi";
+import { useClickOutside } from "../Hooks/useClickOutside";
+import { FiLayers } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
-  const toggleDropdown = () => {
-    const dropdown = document.getElementById("dropdown");
-    dropdown?.classList.toggle("hidden");
-  };
-  return (
-    <nav className="w-full navbar flex items-center justify-between overflow-y-visible">
-      <div className="relative flex justify-between items-center py-4 px-24 w-[65%]">
-        <div className="header-shape absolute inset-0 bg-gray-100 -z-10"></div>
-        <div className="flex items-center gap-24">
-          <div className="flex items-center">
-            <img
-              src={favicon}
-              alt="Recognit Agency"
-              className="w-18 h-18 mr-2"
-            />
-            {/* <div className="flex flex-col">
-              <span className="text-xl font-bold">Recognit</span>
-              <span className="text-md text-gray-500">Agency</span>
-            </div> */}
-          </div>
-          <div className="hidden md:flex space-x-10 text-xl" id="nav-links">
-            <p className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md font-medium nav-link">
-              Home
-            </p>
-            <div className="relative group">
-              <p
-                id="servicesBtn"
-                onClick={toggleDropdown}
-                className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md font-medium nav-link"
-              >
-                Services
-              </p>
-              <div
-                id="dropdown"
-                className={`hidden dropdown absolute top-16 bg-zinc-100 border border-amber-500 w-72 shadow-xl z-10 rounded-lg`}
-              >
-                <a
-                  href="#"
-                  className="flex justify-between px-10 py-8 text-xl hover:bg-gray-200 duration-300"
-                >
-                  On branding
-                  <i className="fa-solid fa-caret-right"></i>
-                </a>
+  const navigate = useNavigate();
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [mobileMenu, setMobileMenu] = useState(false);
 
-                <a
-                  href="#"
-                  className="flex justify-between px-10 py-8 text-xl hover:bg-gray-200 duration-300"
-                >
-                  On marketing
-                  <i className="fa-solid fa-caret-right"></i>
-                </a>
-              </div>
+  const mobileRef = useRef<HTMLDivElement>(null);
+
+  useClickOutside(mobileRef, () => setMobileMenu(false));
+
+  return (
+    <header className="w-full bg-white md:bg-transparent relative">
+
+      <nav className="mx-auto flex items-center justify-between px-4 sm:px-6 md:px-10 py-4">
+
+        <div className="flex items-center flex-shrink-0">
+          <img
+            src={logo_small}
+            alt="logo"
+            className="md:hidden h-12  rounded-md "
+          />
+          <img
+            src={logo_White}
+            alt="logo"
+            className="hidden md:block  h-20  rounded-md"
+          />
+        </div>
+        <ul className="hidden md:flex items-center gap-10 text-base md:text-lg">
+          <li className="text-gray-400 hover:text-gray-600 cursor-pointer nav-link">
+            Home
+          </li>
+
+          <li className="relative group text-gray-400 hover:text-gray-600 cursor-pointer nav-link">
+            Services
+            <div className="absolute left-0 p-2">
+              <ul className=" w-64 bg-white backdrop-blur-md border-b-1 border-l-1 border-r-1 border-amber-400 rounded-bl-lg rounded-br-lg shadow-lg z-50 hidden group-hover:block">
+                <li className="flex justify-between px-5 py-4 hover:bg-gray-100 nav-link">
+                  On branding <span>›</span>
+                </li>
+                <li className="flex justify-between px-5 py-4 hover:bg-gray-100 nav-link">
+                  On marketing <span>›</span>
+                </li>
+              </ul>
             </div>
-            <p className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md font-medium nav-link">
-              Pricing & Plans
-            </p>
-            <p className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md font-medium nav-link">
-              About
-            </p>
-            <p className="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md font-medium nav-link">
-              Contact
-            </p>
-          </div>
-        </div>
-      </div>
-      <div>
-<div
-        id="searchBox"
-        className="search-wrapper overflow-hidden bg-white rounded-full flex items-cente border-2 border-yellow-600">          <input
-            className="search-input px-8 text-md outline-none"
-            placeholder="Search here..."
+          </li>
+
+          <li
+            onClick={() => navigate("/pricing-plans")}
+            className="text-gray-400 hover:text-gray-600 cursor-pointer nav-link"
+          >
+            Pricing & Plans
+          </li>
+
+          <li className="text-gray-400 hover:text-gray-600 cursor-pointer nav-link">
+            About
+          </li>
+
+          <li className="text-gray-400 hover:text-gray-600 cursor-pointer nav-link">
+            Contact
+          </li>
+        </ul>
+
+        {/* ================= SEARCH ================= */}
+        <div className="hidden md:flex items-center gap-2">
+          <form className="flex items-center border-b border-transparent focus-within:border-yellow-500">
+            <input
+              type="text"
+              placeholder="Search..."
+              className="w-[300px] bg-transparent outline-none py-1 text-md md:text-base text-gray-500"
             />
-            <button className="w-14 h-14 flex justify-center items-center">
-                <i className="fa-solid fa-magnifying-glass text-yellow-600 text-2xl"></i>
+            <button type="submit">
+              <BiSearch className="text-yellow-600 w-7 h-7" />
             </button>
-        
-        
+          </form>
         </div>
-      </div>
-    </nav>
+
+        {/* ================= MOBILE ================= */}
+        <div className="md:hidden flex items-center gap-3">
+          <button
+            onClick={() => {
+              setSearchOpen(!searchOpen);
+              setMobileMenu(false);
+            }}
+          >
+            <BiSearch className="w-7 h-7 text-yellow-600" />
+          </button>
+
+          <button
+            onClick={() => {
+              setMobileMenu(!mobileMenu);
+              setSearchOpen(false);
+            }}
+          >
+            {mobileMenu ? (
+              <BiX className="w-8 h-8 text-gray-700" />
+            ) : (
+              <BiMenu className="w-8 h-8 text-gray-700" />
+            )}
+          </button>
+        </div>
+      </nav>
+
+      {/* ================= MOBILE SEARCH ================= */}
+      {searchOpen && (
+        <div className="md:hidden px-4 pb-3 border-b border-gray-100">
+          <form className="flex items-center border-b border-yellow-500">
+            <input
+              type="text"
+              placeholder="Search..."
+              className="w-full bg-transparent outline-none py-2 text-gray-600"
+            />
+            <BiSearch className="text-yellow-600 w-6 h-6" />
+          </form>
+        </div>
+      )}
+      {mobileMenu && (
+        <div
+          ref={mobileRef}
+          className="md:hidden absolute top-full left-0 w-full bg-white border-t border-gray-100 shadow-lg z-50"
+        >
+          <ul className="flex flex-col p-4 gap-4 text-gray-600">
+            <li>Home</li>
+
+            <li>
+              <p className="font-medium">Services</p>
+              <ul className="pl-4 mt-2 space-y-2 text-yellow-600 md:text-gray-500">
+                <li>On branding</li>
+                <li>On marketing</li>
+              </ul>
+            </li>
+
+            <li>Pricing & Plans</li>
+            <li>About</li>
+            <li>Contact</li>
+          </ul>
+        </div>
+      )}
+    </header>
   );
 };
 
