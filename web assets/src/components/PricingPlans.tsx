@@ -185,31 +185,33 @@ export default function PricingPlans() {
   const [openComparison, setOpenComparison] = useState(false);
 
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-10">
+    <section className="md:py-24 px-4 sm:px-6 lg:px-10">
       {/* Header */}
-      <div className="text-center mb-16">
-        <h2 className="text-4xl font-bold text-gray-900">
+      <div className="text-center max-w-3xl mx-auto md:mb-12 mb-5 ">
+        <h2 className="text-4xl font-bold text-gray-900 text-end md:text-center">
           Choose the Right Plan for Your Brand
         </h2>
-        <p className="mt-4 text-gray-500 max-w-2xl mx-auto">
+        <p className="md:mt-4 mt-2 text-gray-500 max-w-2xl mx-auto text-start md:text-center">
           Build, grow, and scale your business with professional branding and
           marketing systems designed for every stage of growth.
         </p>
-        <button
-          type="button"
-          onClick={() => setOpenComparison(true)}
-          className="mt-8 text-yellow-600 font-medium underline underline-offset-2 hover:text-yellow-700 transition-colors cursor-pointer bg-transparent border-none"
-        >
-          View Comparison Table
-        </button>
+        <div className="flex justify-end md:justify-center pl-5 md:pl-0">
+          <button
+            type="button"
+            onClick={() => setOpenComparison(true)}
+            className="md:mt-8 mt-5 text-yellow-600 font-medium underline underline-offset-2 hover:text-yellow-700 transition-colors cursor-pointer bg-transparent border-none"
+          >
+            View Comparison Table
+          </button>
+        </div>{" "}
       </div>
 
       {/* Cards */}
-      <div className="grid gap-8 sm:grid-cols-2 xl:grid-cols-3 max-w-7xl mx-auto">
+      <div className="grid gap-8 grid-cols-1 xl:grid-cols-3 md:max-w-7xl mx-auto">
         {plans.map((plan) => (
           <article
             key={plan.name}
-            className={`relative rounded-3xl p-8 shadow-sm ${
+            className={`relative rounded-3xl md:p-8 p-5 shadow-sm ${
               plan.featured
                 ? "border-2 border-yellow-600 bg-white scale-105"
                 : plan.dark
@@ -226,7 +228,7 @@ export default function PricingPlans() {
             <span className="text-3xl">{plan.icon}</span>
 
             <h3
-              className={`mt-4 text-2xl font-bold ${plan.dark ? "text-white" : "text-gray-900"}`}
+              className={`md:mt-4 mt-3 text-2xl font-bold ${plan.dark ? "text-white" : "text-gray-900"}`}
             >
               {plan.name}
             </h3>
@@ -291,7 +293,7 @@ export default function PricingPlans() {
       {/* Comparison Modal */}
       {openComparison && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4"
+          className="fixed inset-0 z-40 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4"
           onClick={() => setOpenComparison(false)}
         >
           <div

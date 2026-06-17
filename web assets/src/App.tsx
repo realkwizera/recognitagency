@@ -8,14 +8,12 @@ function App() {
   return (
     <>
       <div className="w-full  ">
-        <div className=" relative max-w-[1440px] mx-auto">
-          <div className="mx-auto absolute  fixed inset-0 max-w-[1440px] z-50">
-            <div style={{ background: "#000" }}>
+        <div className=" relative lg:max-w-[1440px] mx-auto md:space-y-24 space-y-12">
+          <div className="mx-auto absolute  sticky inset-0 lg:max-w-[1440px] z-50">
               <Navbar />
-            </div>
           </div>
 
-          <div className="mx-auto px-24">
+          <div className="mx-auto px-8 md:px-24">
             <Routes>
               <Route path="/pricing-plans" element={<PricingPlans />} />
             </Routes>
