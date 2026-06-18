@@ -16,9 +16,9 @@ const Navbar = () => {
   useClickOutside(mobileRef, () => setMobileMenu(false));
 
   return (
-    <header className="w-full bg-white md:bg-transparent relative">
+    <header className="w-full bg-white md:bg-black relative">
 
-      <nav className="mx-auto flex items-center justify-between px-4 sm:px-6 md:px-10 py-4">
+      <nav className="mx-auto flex items-center justify-between px-4 max-w-[1440px] sm:px-6 md:px-10 py-4">
 
         <div className="flex items-center flex-shrink-0">
           <img
