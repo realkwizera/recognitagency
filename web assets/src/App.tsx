@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import PricingPlans from "./components/PricingPlans";
+import Hero from "./components/Hero";
 
 function App() {
   return (
@@ -13,8 +14,9 @@ function App() {
               <Navbar />
           </div>
 
-          <div className="mx-auto px-2 md:px-8 md:px-24">
+          <div className="mx-auto px-2 md:px-8 ">
             <Routes>
+              <Route path="/" element={<Hero/>} />
               <Route path="/pricing-plans" element={<PricingPlans />} />
             </Routes>
           </div>

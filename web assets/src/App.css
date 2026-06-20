@@ -52,3 +52,39 @@ body{
     width:100%;
     opacity:1;
 }
+
+.house-frame {
+  position: relative;
+}
+
+/* roof lines */
+.house-frame::before,
+.house-frame::after {
+  content: "";
+  position: absolute;
+  top: 0;                 /* apex is exactly at top edge */
+  width: 50%;
+  height: 2px;
+  background: currentColor;
+}
+
+/* left side "/" */
+.house-frame::before {
+  left: 50%;
+  transform-origin: right top;
+  transform: translateX(-100%) rotate(-22.5deg);
+  top:-65%;
+}
+
+/* right side "\" */
+.house-frame::after {
+  left: 50%;
+  transform-origin: left top;
+  transform: rotate(22.5deg);
+  top:-65%;
+}
+
+/* foundation */
+.house-frame {
+  border-bottom: 2px solid currentColor;
+}

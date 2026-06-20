@@ -20,16 +20,15 @@ const plans: Plan[] = [
     subtitle: "Foundation Kit",
     price: "$150",
     priceRange: "– $400",
-    description: "Perfect for startups and personal brands.",
+    description: "Start with a strong, professional identity.",
     features: [
-      "Logo design",
+      "Logo design (1–2 concepts)",
       "Brand color palette",
       "Typography system",
       "Business card design",
       "Email signature",
-      "Mini brand guideline",
     ],
-    ctaLabel: "Get Started",
+    ctaLabel: "Get started",
   },
   {
     icon: "🥈",
@@ -37,33 +36,35 @@ const plans: Plan[] = [
     subtitle: "Visibility Kit",
     price: "$200",
     priceRange: "– $600",
-    description: "Perfect for businesses ready to gain visibility.",
+    description: "Increase visibility and start attracting customers.",
     features: [
-      "Social media graphics",
+      "Everything in Bronze, as add-on",
+      "Social graphics pack (5–10 designs)",
       "Flyers & posters",
       "Website banners",
       "Presentation deck",
       "Email campaign template",
     ],
-    ctaLabel: "Get Started",
+    ctaLabel: "Get started",
   },
   {
-    icon: "🥇",
+    icon: "🏅",
     name: "Gold",
     subtitle: "Growth System",
     price: "$700",
     priceRange: "– $2,000",
-    description: "Complete branding, marketing and website ecosystem.",
+    description: "Build a complete brand and marketing system.",
     features: [
       "Full brand identity system",
-      "Social media content kit",
-      "Infographics",
+      "Extended brand guidelines",
+      "Corporate templates",
+      "Social content kit (10–20 posts)",
+      "Infographics & product catalog",
       "Email marketing system",
       "Website (5–8 pages)",
-      "Basic SEO setup",
     ],
     featured: true,
-    ctaLabel: "Get Started",
+    ctaLabel: "Get started",
   },
   {
     icon: "💎",
@@ -71,33 +72,39 @@ const plans: Plan[] = [
     subtitle: "Business Engine",
     price: "$2,500",
     priceRange: "– $7,000",
-    description: "Conversion-driven system for scaling revenue.",
+    description: "Turn your brand into a conversion-driven system.",
     features: [
+      "Everything in Gold, enhanced",
       "Packaging design system",
-      "Ad creatives",
+      "Advanced ad creatives (Meta/Google)",
       "Video marketing assets",
-      "Landing pages",
-      "SEO website",
+      "Press release kit",
+      "SEO-optimized website",
+      "Conversion landing pages",
       "Analytics setup",
     ],
-    ctaLabel: "Get Started",
+    ctaLabel: "Get started",
   },
   {
     icon: "🏢",
     name: "Enterprise",
     subtitle: "Legacy System",
     price: "$8,000+",
-    description: "Complete transformation and market dominance.",
+    description: "Complete transformation of your brand ecosystem.",
     features: [
-      "Brand strategy",
-      "Rebranding system",
-      "CRM integration",
-      "Automation systems",
+      "Brand strategy & positioning",
+      "Full rebranding system",
+      "Brand governance manual",
+      "Multi-branch identity system",
+      "Enterprise website ecosystem",
       "Multi-language support",
-      "Analytics dashboards",
+      "Full marketing campaign system",
+      "CRM & automation integration",
+      "Analytics & reporting dashboards",
+      "Corporate video direction",
     ],
     dark: true,
-    ctaLabel: "Contact Us",
+    ctaLabel: "Contact us",
   },
 ];
 
@@ -111,16 +118,59 @@ type ComparisonRow = {
 };
 
 const comparisonRows: ComparisonRow[] = [
+  // ---- BRANDING IDENTITY (all plans) ----
   {
-    feature: "Branding Identity",
+    feature: "Logo Design",
     bronze: true,
-    silver: true,
+    silver: false, // Silver doesn't include logo design
     gold: true,
     platinum: true,
     enterprise: true,
   },
   {
-    feature: "Marketing Assets",
+    feature: "Brand Color Palette",
+    bronze: true,
+    silver: false,
+    gold: true,
+    platinum: true,
+    enterprise: true,
+  },
+  {
+    feature: "Typography System",
+    bronze: true,
+    silver: false,
+    gold: true,
+    platinum: true,
+    enterprise: true,
+  },
+  {
+    feature: "Business Card Design",
+    bronze: true,
+    silver: false,
+    gold: true,
+    platinum: true,
+    enterprise: true,
+  },
+  {
+    feature: "Email Signature",
+    bronze: true,
+    silver: false,
+    gold: true,
+    platinum: true,
+    enterprise: true,
+  },
+  {
+    feature: "Mini Brand Guideline",
+    bronze: true,
+    silver: false,
+    gold: true,
+    platinum: true,
+    enterprise: true,
+  },
+
+  // ---- MARKETING ASSETS (Silver and above) ----
+  {
+    feature: "Social Media Graphics",
     bronze: false,
     silver: true,
     gold: true,
@@ -128,7 +178,41 @@ const comparisonRows: ComparisonRow[] = [
     enterprise: true,
   },
   {
-    feature: "Website",
+    feature: "Flyers & Posters",
+    bronze: false,
+    silver: true,
+    gold: true,
+    platinum: true,
+    enterprise: true,
+  },
+  {
+    feature: "Website Banners",
+    bronze: false,
+    silver: true,
+    gold: true,
+    platinum: true,
+    enterprise: true,
+  },
+  {
+    feature: "Presentation Deck",
+    bronze: false,
+    silver: true,
+    gold: true,
+    platinum: true,
+    enterprise: true,
+  },
+  {
+    feature: "Email Campaign Template",
+    bronze: false,
+    silver: true,
+    gold: true,
+    platinum: true,
+    enterprise: true,
+  },
+
+  // ---- GOLD & ABOVE (extra marketing & web) ----
+  {
+    feature: "Full Brand Identity System",
     bronze: false,
     silver: false,
     gold: true,
@@ -136,7 +220,7 @@ const comparisonRows: ComparisonRow[] = [
     enterprise: true,
   },
   {
-    feature: "Campaign System",
+    feature: "Social Media Content Kit",
     bronze: false,
     silver: false,
     gold: true,
@@ -144,7 +228,131 @@ const comparisonRows: ComparisonRow[] = [
     enterprise: true,
   },
   {
-    feature: "CRM & Automation",
+    feature: "Infographics",
+    bronze: false,
+    silver: false,
+    gold: true,
+    platinum: true,
+    enterprise: true,
+  },
+  {
+    feature: "Email Marketing System",
+    bronze: false,
+    silver: false,
+    gold: true, // Gold has this, Platinum does NOT (see Platinum list)
+    platinum: false,
+    enterprise: true,
+  },
+  {
+    feature: "Website (5–8 pages)",
+    bronze: false,
+    silver: false,
+    gold: true,
+    platinum: false, // Platinum does NOT have a full website; it has landing pages
+    enterprise: true,
+  },
+  {
+    feature: "Basic SEO Setup",
+    bronze: false,
+    silver: false,
+    gold: true,
+    platinum: false, // Platinum has "SEO website" (different)
+    enterprise: true,
+  },
+
+  // ---- PLATINUM & ENTERPRISE (advanced digital) ----
+  {
+    feature: "Packaging Design System",
+    bronze: false,
+    silver: false,
+    gold: false,
+    platinum: true,
+    enterprise: true,
+  },
+  {
+    feature: "Ad Creatives",
+    bronze: false,
+    silver: false,
+    gold: false,
+    platinum: true,
+    enterprise: true,
+  },
+  {
+    feature: "Video Marketing Assets",
+    bronze: false,
+    silver: false,
+    gold: false,
+    platinum: true,
+    enterprise: true,
+  },
+  {
+    feature: "Landing Pages",
+    bronze: false,
+    silver: false,
+    gold: false,
+    platinum: true,
+    enterprise: true,
+  },
+  {
+    feature: "SEO Website (optimized)",
+    bronze: false,
+    silver: false,
+    gold: false,
+    platinum: true,
+    enterprise: true,
+  },
+  {
+    feature: "Analytics Setup",
+    bronze: false,
+    silver: false,
+    gold: false,
+    platinum: true,
+    enterprise: true,
+  },
+
+  // ---- ENTERPRISE ONLY ----
+  {
+    feature: "Brand Strategy",
+    bronze: false,
+    silver: false,
+    gold: false,
+    platinum: false,
+    enterprise: true,
+  },
+  {
+    feature: "Rebranding System",
+    bronze: false,
+    silver: false,
+    gold: false,
+    platinum: false,
+    enterprise: true,
+  },
+  {
+    feature: "CRM Integration",
+    bronze: false,
+    silver: false,
+    gold: false,
+    platinum: false,
+    enterprise: true,
+  },
+  {
+    feature: "Automation Systems",
+    bronze: false,
+    silver: false,
+    gold: false,
+    platinum: false,
+    enterprise: true,
+  },
+  {
+    feature: "Multi‑Language Support",
+    bronze: false,
+    silver: false,
+    gold: false,
+    platinum: false,
+    enterprise: true,
+  },
+  {
+    feature: "Analytics Dashboards",
     bronze: false,
     silver: false,
     gold: false,
@@ -184,23 +392,52 @@ const CrossIcon = () => (
 export default function PricingPlans() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  // New state
+  const [viewMode, setViewMode] = useState<"all" | "upgrades">("all");
+
+  // Helper to get upgrade pairs
+  const upgradePairs = [
+    { from: "bronze", to: "silver", fromLabel: "Bronze", toLabel: "Silver" },
+    { from: "silver", to: "gold", fromLabel: "Silver", toLabel: "Gold" },
+    { from: "gold", to: "platinum", fromLabel: "Gold", toLabel: "Platinum" },
+    {
+      from: "platinum",
+      to: "enterprise",
+      fromLabel: "Platinum",
+      toLabel: "Enterprise",
+    },
+  ];
 
   const handleNext = () => {
     if (!scrollContainerRef.current) return;
     const container = scrollContainerRef.current;
-    const cardWidth = container.querySelector("article")?.getBoundingClientRect().width || 0;
+    const cardWidth =
+      container.querySelector("article")?.getBoundingClientRect().width || 0;
     const gap = 32;
     const scrollAmount = cardWidth + gap;
     container.scrollBy({ left: scrollAmount, behavior: "smooth" });
     setCurrentIndex((prev) => Math.min(prev + 1, plans.length - 1));
   };
+  function getDiffRows(
+    planA: keyof Pick<
+      ComparisonRow,
+      "bronze" | "silver" | "gold" | "platinum" | "enterprise"
+    >,
+    planB: keyof Pick<
+      ComparisonRow,
+      "bronze" | "silver" | "gold" | "platinum" | "enterprise"
+    >,
+  ) {
+    return comparisonRows.filter((row) => row[planA] !== row[planB]);
+  }
 
   useEffect(() => {
     const container = scrollContainerRef.current;
     if (!container) return;
     const handleScroll = () => {
       const scrollLeft = container.scrollLeft;
-      const cardWidth = container.querySelector("article")?.getBoundingClientRect().width || 0;
+      const cardWidth =
+        container.querySelector("article")?.getBoundingClientRect().width || 0;
       const gap = 32;
       const newIndex = Math.round(scrollLeft / (cardWidth + gap));
       setCurrentIndex(Math.min(newIndex, plans.length - 1));
@@ -210,13 +447,15 @@ export default function PricingPlans() {
   }, []);
 
   return (
-    <section className="py-12 l md:py-24 px-4 sm:px-6 lg:px-10">
+    <section className="py-8 md:py-12 px-4 sm:px-6 lg:px-10">
       {/* Header */}
-      <div className="text-center max-w-3xl mx-auto mb-8 md:mb-12">
-        <h2 className="text-4xl md:text-6xl font-bold text-yellow-600 text-center">
-          Choose the Right Plan for Your Brand
-        </h2>
-        <p className="mt-2 md:mt-4 text-gray-500 max-w-2xl mx-auto text-start md:text-center">
+      <div className="text-center mx-auto mb-8 md:mb-12">
+        <div className="max-w-2xl md:max-w-3xl mx-auto">
+          <h2 className="text-4xl md:text-6xl font-bold text-yellow-600 text-center">
+            Choose the Right Plan for Your Brand
+          </h2>
+        </div>
+        <p className="mt-2 md:mt-4 text-gray-500 max-w-2xl md:max-w-7xl mx-auto text-start md:text-center">
           Build, grow, and scale your business with professional branding and
           marketing systems designed for every stage of growth.
         </p>
@@ -226,13 +465,13 @@ export default function PricingPlans() {
       <div className="relative">
         <div
           ref={scrollContainerRef}
-          className="flex overflow-x-auto snap-x snap-mandatory gap-8 py-4 scrollbar-hide"
+          className="flex overflow-x-auto snap-x snap-mandatory gap-8 py-4 scrollbar-hide items-end"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {plans.map((plan) => (
             <article
               key={plan.name}
-              className={`relative min-w-[280px] md:min-w-[300px] lg:min-w-[320px] flex-shrink-0 snap-start rounded-3xl p-6 hover:scale-102 transition-transform duration-400 md:p-8 shadow-sm ${
+              className={`relative min-w-[280px] md:min-w-[300px] lg:min-w-[320px] flex-shrink-0 snap-start h-fit rounded-3xl p-6 hover:scale-102 transition-transform duration-400 md:p-8 shadow-sm ${
                 plan.featured
                   ? "border-2 border-yellow-600 bg-white scale-102 hover:shadow-lg hover:scale-105"
                   : plan.dark
@@ -267,7 +506,9 @@ export default function PricingPlans() {
                   {plan.price}
                 </span>
                 {plan.priceRange && (
-                  <span className={plan.dark ? "text-gray-400" : "text-gray-500"}>
+                  <span
+                    className={plan.dark ? "text-gray-400" : "text-gray-500"}
+                  >
                     {" "}
                     {plan.priceRange}
                   </span>
@@ -338,92 +579,192 @@ export default function PricingPlans() {
       </div>
 
       {/* Permanent Comparison Table with Sticky Feature Column */}
-      <div className="mt-16 md:mt-20 max-w-7xl mx-auto overflow-x-auto">
+      <div className="mt-16 md:mt-20 max-w-7xl mx-auto">
         <div className="text-center sticky inset-0 mb-8">
-          <h3 className="text-2xl font-bold text-gray-900">Feature Comparison</h3>
-          <p className="text-gray-500 mt-1">See what each plan includes at a glance.</p>
+          <h3 className="text-2xl font-bold text-gray-900">
+            Feature Comparison
+          </h3>
+          <p className="text-gray-500 mt-1">
+            See what each plan includes at a glance.
+          </p>
+          <div>
+            <div className="flex justify-center mt-5 gap-4 mb-8">
+              <button
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                  viewMode === "all"
+                    ? "bg-yellow-600 text-white"
+                    : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                }`}
+                onClick={() => setViewMode("all")}
+              >
+                All Plans
+              </button>
+              <button
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                  viewMode === "upgrades"
+                    ? "bg-yellow-600 text-white"
+                    : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                }`}
+                onClick={() => setViewMode("upgrades")}
+              >
+                Upgrade Views
+              </button>
+            </div>
+          </div>
         </div>
 
-        <table className="w-full min-w-[700px] text-sm border-separate border-spacing-0">
-          <thead>
-            <tr>
-              {/* Sticky Feature column header */}
-              <th className="sticky left-0 z-20 px-6 py-4 text-left font-medium text-gray-700 bg-gray-50 border-b border-gray-200 rounded-tl-xl">
-                Feature
-              </th>
-              {plans.map((plan) => (
-                <th
-                  key={plan.name}
-                  className={`px-4 py-4 text-center border-b ${
-                    plan.featured
-                      ? "bg-yellow-600 border-yellow-200"
-                      : plan.dark
-                        ? "bg-zinc-800 border-zinc-700"
-                        : "bg-gray-50 border-gray-200"
-                  } `}
-                >
-                  <div
-                    className={`flex flex-col items-center gap-1 ${
-                      plan.dark ? "text-white" : "text-gray-900"
-                    }`}
-                  >
-                    <span className="text-2xl">{plan.icon}</span>
-                    <span className="font-bold">{plan.name}</span>
-                    <span
-                      className={`text-xs font-medium ${
-                        plan.dark ? "text-yellow-400" : "text-yellow-600"
-                      }`}
+        {viewMode === "all" ? (
+          // Your existing full table (keep it unchanged)
+          <div className="mt-8 max-w-7xl mx-auto overflow-x-auto">
+            <table className="w-full min-w-[700px] text-sm border-separate border-spacing-0">
+              <thead>
+                <tr>
+                  {/* Sticky Feature column header */}
+                  <th className="sticky left-0 z-20 px-6 py-4 text-left font-medium text-gray-700 bg-gray-50 text-gray-400  border-b border-gray-100 rounded-tl-xl">
+                    Feature
+                  </th>
+                  {plans.map((plan) => (
+                    <th
+                      key={plan.name}
+                      className={`px-4 py-4 text-center border-b ${
+                        plan.featured
+                          ? "bg-yellow-600 border-yellow-200"
+                          : plan.dark
+                            ? "bg-zinc-800 border-zinc-700"
+                            : "bg-gray-50 border-gray-200"
+                      } `}
                     >
-                      {plan.subtitle}
-                    </span>
-                    <span
-                      className={`text-sm font-semibold ${
-                        plan.dark ? "text-white" : "text-gray-900"
-                      }`}
-                    >
-                      {plan.price}
-                    </span>
-                  </div>
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {comparisonRows.map((row, i) => {
-              const isEven = i % 2 === 0;
-              return (
-                <tr key={row.feature} className={isEven ? "bg-white" : "bg-gray-50/50"}>
-                  {/* Sticky Feature column cell */}
-                  <td
-                    className={`sticky left-0 z-10 px-6 py-4 w-40 font-medium text-gray-800 border-b border-gray-100 ${
-                      isEven ? "bg-white" : "bg-gray-50"
-                    }`}
-                  >
-                    {row.feature}
-                  </td>
-                  <td className="px-4 py-4 text-center border-b border-gray-100">
-                    {row.bronze ? <CheckIcon /> : <CrossIcon />}
-                  </td>
-                  <td className="px-4 py-4 text-center border-b border-gray-100">
-                    {row.silver ? <CheckIcon /> : <CrossIcon />}
-                  </td>
-                  <td className="px-4 py-4 text-center border-b border-gray-100 bg-yellow-50/50">
-                    {row.gold ? <CheckIcon /> : <CrossIcon />}
-                  </td>
-                  <td className="px-4 py-4 text-center border-b border-gray-100">
-                    {row.platinum ? <CheckIcon /> : <CrossIcon />}
-                  </td>
-                  <td className="px-4 py-4 text-center border-b border-gray-100">
-                    {row.enterprise ? <CheckIcon /> : <CrossIcon />}
-                  </td>
+                      <div
+                        className={`flex flex-col items-center gap-1 ${
+                          plan.dark ? "text-white" : "text-gray-900"
+                        }`}
+                      >
+                        <span className="text-2xl">{plan.icon}</span>
+                        <span className="font-bold">{plan.name}</span>
+                        <span
+                          className={`text-xs font-medium ${
+                            plan.dark ? "text-yellow-400" : "text-yellow-600"
+                          }`}
+                        >
+                          {plan.subtitle}
+                        </span>
+                        <span
+                          className={`text-sm font-semibold ${
+                            plan.dark ? "text-white" : "text-gray-900"
+                          }`}
+                        >
+                          {plan.price}
+                        </span>
+                      </div>
+                    </th>
+                  ))}
                 </tr>
+              </thead>
+              <tbody>
+                {comparisonRows.map((row, i) => {
+                  const isEven = i % 2 === 0;
+                  return (
+                    <tr
+                      key={row.feature}
+                      className={isEven ? "bg-white" : "bg-gray-50/50"}
+                    >
+                      {/* Sticky Feature column cell */}
+                      <td
+                        className={`sticky left-0 z-10 px-6 py-4 w-40 font-medium text-gray-800 border-b border-gray-100 ${
+                          isEven ? "bg-white" : "bg-gray-50"
+                        }`}
+                      >
+                        {row.feature}
+                      </td>
+                      <td className="px-4 py-4 text-center border-b border-gray-100">
+                        {row.bronze ? <CheckIcon /> : <CrossIcon />}
+                      </td>
+                      <td className="px-4 py-4 text-center border-b border-gray-100">
+                        {row.silver ? <CheckIcon /> : <CrossIcon />}
+                      </td>
+                      <td className="px-4 py-4 text-center border-b border-gray-100 bg-yellow-50/50">
+                        {row.gold ? <CheckIcon /> : <CrossIcon />}
+                      </td>
+                      <td className="px-4 py-4 text-center border-b border-gray-100">
+                        {row.platinum ? <CheckIcon /> : <CrossIcon />}
+                      </td>
+                      <td className="px-4 py-4 text-center border-b border-gray-100">
+                        {row.enterprise ? <CheckIcon /> : <CrossIcon />}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <div className="columns-1 md:columns-2 gap-12 space-y-8 max-w-7xl mx-auto mt-8">
+            {upgradePairs.map(({ from, to, fromLabel, toLabel }) => {
+              // Filter rows where the lower plan has false and the higher has true
+              const diffRows = comparisonRows.filter(
+                (row) =>
+                  row[from as keyof ComparisonRow] === false &&
+                  row[to as keyof ComparisonRow] === true,
+              );
+              if (diffRows.length === 0) return null;
+              return (
+                <div key={`${from}-${to}`}>
+                  <h4 className="text-lg font-bold text-gray-800 mb-3">
+                    Upgrade from{" "}
+                    <span className="text-yellow-600">{fromLabel}</span> →{" "}
+                    <span className="text-yellow-600">{toLabel}</span>
+                    <span className="font-normal text-gray-500 ml-2">
+                      – what you gain
+                    </span>
+                  </h4>
+                  <div className="">
+                    <table className="w-full text-sm border border-gray-100 h-fit">
+                      <thead>
+                        <tr className="w-full w-fit">
+                          <th className="sticky left-0 z-20 px-4 py-3 text-left text-gray-100  border-b border-gray-100">
+                            Feature
+                          </th>
+                          <th className="px-4 py-3 text-center bg-gray-50 text-yellow-600  border-b border-gray-100">
+                            {fromLabel}
+                          </th>
+                          <th className="px-4 py-3 text-center bg-gray-50 text-yellow-600  border-b border-gray-100">
+                            {toLabel}
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {diffRows.map((row, idx) => {
+                          const isEven = idx % 2 === 0;
+                          return (
+                            <tr
+                              key={row.feature}
+                              className={isEven ? "" : "bg-gray-50/3"}
+                            >
+                              <td
+                                className={`sticky px-4 py-3 font-medium text-gray-50  border-b border-gray-100 `}
+                              >
+                                {row.feature}
+                              </td>
+                              <td className="px-4 py-3 text-center text-gray-400  border-b border-gray-100">
+                                <CrossIcon />
+                              </td>
+                              <td className="px-4 py-3 text-center text-gray-400  border-b border-gray-100">
+                                <CheckIcon />
+                              </td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
               );
             })}
-          </tbody>
-        </table>
+          </div>
+        )}
       </div>
 
-      <style >{`
+      <style>{`
         .scrollbar-hide::-webkit-scrollbar {
           display: none;
         }
