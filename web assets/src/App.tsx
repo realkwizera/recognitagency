@@ -10,7 +10,7 @@ function App() {
     <>
       <div className="w-full  ">
         <div className=" relative md:max-w-[1440px] mx-auto">
-          <div className="mx-auto absolute  sticky inset-0 md:max-w-[1440px] z-50">
+          <div className="mx-auto absolute  fixed inset-0 md:max-w-[1440px] z-50">
               <Navbar />
           </div>
 

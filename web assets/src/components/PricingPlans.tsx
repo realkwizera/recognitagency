@@ -447,7 +447,6 @@ export default function PricingPlans() {
     return () => container.removeEventListener("scroll", handleScroll);
   }, [totalItems]);
 
-
   return (
     <section className="py-8 md:py-12 px-4 sm:px-6 lg:px-10">
       {/* Header */}
@@ -473,12 +472,12 @@ export default function PricingPlans() {
           {plans.map((plan) => (
             <article
               key={plan.name}
-              className={`relative min-w-[280px] md:min-w-[300px] lg:min-w-[320px] flex-shrink-0 snap-start h-fit rounded-3xl p-6 hover:scale-102 transition-transform duration-400 md:p-8 shadow-sm ${
+              className={`relative min-w-[280px] md:min-w-[300px] lg:min-w-[320px] flex-shrink-0 snap-start h-fit rounded-3xl p-6 hover:scale-102 transition-transform duration-400 md:p-8 shadow-sm  ${
                 plan.featured
                   ? "border-2 border-yellow-600 bg-gray-100 scale-102 hover:shadow-lg hover:scale-105"
                   : plan.dark
                     ? "border border-zinc-800 bg-zinc-900 text-gray-100"
-                    : "border border-gray-200 bg-gray-100"
+                    : "border border-gray-200 bg-gray-200 shadow-yellow-100"
               }`}
             >
               {plan.featured && (
@@ -553,26 +552,25 @@ export default function PricingPlans() {
             </article>
           ))}
 
-          <article className="relative min-w-[280px] md:min-w-[300px] lg:min-w-[320px] flex-shrink-0 snap-start rounded-3xl p-6 md:p-8 shadow-sm border-2 border-dashed border-yellow-600 bg-yellow-50/70 hover:shadow-lg hover:scale-105 transition-all duration-400 min-h-100 flex flex-col items-center justify-center text-center self-center">
+          <article className="relative min-w-[280px] md:min-w-[300px] lg:min-w-[320px] flex-shrink-0 snap-start rounded-3xl p-6 md:p-8 shadow-sm border-2 border-dashed border-yellow-600 bg-yellow-50 hover:shadow-lg hover:scale-105 transition-all duration-400 min-h-100 flex flex-col items-center justify-center text-center self-center">
             <div>
               <PiPlusCircle size={48} className="text-yellow-600" />
-            <h3 className="text-2xl font-bold text-gray-900 mt-3">
-              Custom Plan
-            </h3>
-            <p className="text-gray-600 text-sm max-w-[200px] mt-1">
-              Need something tailored? Let’s build a package that fits your
-              exact needs.
-            </p>
-            <button
-              type="button"
-              className="mt-4 px-6 py-3 bg-yellow-600 text-white rounded-xl font-medium hover:bg-yellow-700 transition-colors"
-            >
-              Contact us
-            </button>
+              <h3 className="text-2xl font-bold text-gray-900 mt-3">
+                Custom Plan
+              </h3>
+              <p className="text-gray-600 text-sm max-w-[200px] mt-1">
+                Need something tailored? Let’s build a package that fits your
+                exact needs.
+              </p>
+              <button
+                type="button"
+                className="mt-4 px-6 py-3 bg-yellow-600 text-white rounded-xl font-medium hover:bg-yellow-700 transition-colors"
+              >
+                Contact us
+              </button>
             </div>
           </article>
         </div>
-        
 
         <hr className="mx-3 text-gray-100/20" />
 

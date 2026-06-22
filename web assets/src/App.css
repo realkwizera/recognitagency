@@ -73,7 +73,7 @@ body{
   left: 50%;
   transform-origin: right top;
   transform: translateX(-100%) rotate(-22.5deg);
-  top:-65%;
+  top:-45%;
 }
 
 /* right side "\" */
@@ -81,7 +81,7 @@ body{
   left: 50%;
   transform-origin: left top;
   transform: rotate(22.5deg);
-  top:-65%;
+  top:-45%;
 }
 
 /* foundation */

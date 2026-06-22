@@ -67,13 +67,13 @@ const Navbar = () => {
           </li>
         </ul>
 
-        {/* ================= SEARCH ================= */}
+        
         <div className="hidden md:flex items-center gap-2">
           <form className="flex items-center border-b border-transparent focus-within:border-yellow-500">
             <input
               type="text"
               placeholder="Search..."
-              className="w-[300px] bg-transparent outline-none py-1 text-md md:text-base text-gray-500"
+              className="w-[200px] bg-transparent outline-none py-1 text-md md:text-base text-gray-500"
             />
             <button type="submit">
               <BiSearch className="text-yellow-600 w-7 h-7" />
