@@ -34,7 +34,7 @@ const Navbar = () => {
         </div>
         <ul className="hidden md:flex items-center gap-10 text-base md:text-lg">
           <li className="text-gray-400 hover:text-gray-600 cursor-pointer nav-link">
-            Home
+            <a href="/">Home</a>
           </li>
 
           <li className="relative group text-gray-400 hover:text-gray-600 cursor-pointer nav-link">
@@ -55,7 +55,7 @@ const Navbar = () => {
             onClick={() => navigate("/pricing-plans")}
             className="text-gray-400 hover:text-gray-600 cursor-pointer nav-link"
           >
-            Pricing & Plans
+            <a href="/pricing-plans">Pricing & Plans</a>
           </li>
 
           <li className="text-gray-400 hover:text-gray-600 cursor-pointer nav-link">

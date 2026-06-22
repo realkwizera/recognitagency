@@ -19,7 +19,7 @@ const Hero = () => {
       </div>
       {/* for medium screens */}
       <div className="hidden md:block absolute md:bottom-2/10 bottom-1 grid md:flex items-center justify-center gap-4">
-        <div className="text-yellow-600 p-4 rounded-lg house-frame w-67">
+        <div className="text-yellow-600 p-4 rounded-lg house-frame w-67 shadow-x-md shadow-gray-100">
           <h1 className="w-full py-2 mx-auto bg-yellow-600 font-semibold text-center text-gray-900">
             Welcome to our website!
           </h1>
@@ -27,31 +27,31 @@ const Hero = () => {
             Discover amazing content and connect with others.
           </p>
         </div>
-        <div className="text-yellow-600 p-4 rounded-lg house-frame w-67">
+        <div className="text-yellow-600 p-4 rounded-lg house-frame w-67 shadow-x-md shadow-gray-100">
           <h1 className="w-full py-2 mx-auto bg-yellow-600 font-semibold text-center text-gray-900">
             Welcome to our website!
           </h1>
           <p>Discover amazing content and connect with others.</p>
         </div>
-        <div className="text-yellow-600 p-4 rounded-lg house-frame w-67">
+        <div className="text-yellow-600 p-4 rounded-lg house-frame w-67 shadow-x-md shadow-gray-100">
           <h1 className="w-full py-2 mx-auto bg-yellow-600 font-semibold text-center text-gray-900">
             Welcome to our website!
           </h1>
           <p>Discover amazing content and connect with others.</p>
         </div>
-        <div className="text-yellow-600 p-4 rounded-lg house-frame w-67">
+        <div className="text-yellow-600 p-4 rounded-lg house-frame w-67 shadow-x-md shadow-gray-100">
           <h1 className="w-full py-2 mx-auto bg-yellow-600 font-semibold text-center text-gray-900">
             Welcome to our website!
           </h1>
           <p>Discover amazing content and connect with others.</p>
         </div>
-        <div className="text-yellow-600 p-4 rounded-lg house-frame w-67">
+        <div className="text-yellow-600 p-4 rounded-lg house-frame w-67 shadow-x-md shadow-gray-100">
           <h1 className="w-full py-2 mx-auto bg-yellow-600 font-semibold text-center text-gray-900">
             Welcome to our website!
           </h1>
           <p>Discover amazing content and connect with others.</p>
         </div>
-        <div className="text-yellow-600 p-4 rounded-lg house-frame w-67">
+        <div className="text-yellow-600 p-4 rounded-lg house-frame w-67 shadow-x-md shadow-gray-100">
           <h1 className="w-full py-2 mx-auto bg-yellow-600 font-semibold text-center text-gray-900">
             Welcome to our website!
           </h1>

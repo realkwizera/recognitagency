@@ -448,7 +448,7 @@ export default function PricingPlans() {
   }, [totalItems]);
 
   return (
-    <section className="py-8 md:py-12 px-4 sm:px-6 lg:px-10">
+    <section className="py-8 md:py-48 px-4 sm:px-6 lg:px-10">
       {/* Header */}
       <div className="text-center mx-auto mb-8 md:mb-12">
         <div className="max-w-2xl md:max-w-3xl mx-auto">
