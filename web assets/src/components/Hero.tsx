@@ -4,10 +4,11 @@ const Hero = () => {
   return (
     <div className="relative top-0 flex flex-col items-center justify-between min-h-screen py-12 px-4 sm:px-6 lg:px-8">
       <div></div>
+      {/* for medium screens */}
       <div className="hidden md:block absolute md:bottom-2/10 bottom-1 grid md:flex items-center justify-center gap-4">
         <div className="text-yellow-600 p-4 rounded-lg house-frame w-67">
           <h1>Welcome to our website!</h1>
-          <p>Discover amazing content and connect with others.</p>
+          <p className="text-justify">Discover amazing content and connect with others.</p>
         </div>
         <div className="text-yellow-600 p-4 rounded-lg house-frame w-67">
           <h1>Welcome to our website!</h1>
@@ -30,6 +31,7 @@ const Hero = () => {
           <p>Discover amazing content and connect with others.</p>
         </div>
       </div>
+      {/* for small screens */}
       <div className="md:hidden absolute md:bottom-2/10 left-1 bottom-1 grid md:flex items-center justify-center gap-4">
         <div className="text-yellow-600 p-4 rounded-lg  w-67">
           <h1>Welcome to our website!</h1>

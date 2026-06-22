@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { PiPlusCircle } from "react-icons/pi";
 
 type Plan = {
   icon: string;
@@ -118,11 +119,10 @@ type ComparisonRow = {
 };
 
 const comparisonRows: ComparisonRow[] = [
-  // ---- BRANDING IDENTITY (all plans) ----
   {
     feature: "Logo Design",
     bronze: true,
-    silver: false, // Silver doesn't include logo design
+    silver: true,
     gold: true,
     platinum: true,
     enterprise: true,
@@ -130,7 +130,7 @@ const comparisonRows: ComparisonRow[] = [
   {
     feature: "Brand Color Palette",
     bronze: true,
-    silver: false,
+    silver: true,
     gold: true,
     platinum: true,
     enterprise: true,
@@ -138,7 +138,7 @@ const comparisonRows: ComparisonRow[] = [
   {
     feature: "Typography System",
     bronze: true,
-    silver: false,
+    silver: true,
     gold: true,
     platinum: true,
     enterprise: true,
@@ -146,7 +146,7 @@ const comparisonRows: ComparisonRow[] = [
   {
     feature: "Business Card Design",
     bronze: true,
-    silver: false,
+    silver: true,
     gold: true,
     platinum: true,
     enterprise: true,
@@ -154,21 +154,13 @@ const comparisonRows: ComparisonRow[] = [
   {
     feature: "Email Signature",
     bronze: true,
-    silver: false,
-    gold: true,
-    platinum: true,
-    enterprise: true,
-  },
-  {
-    feature: "Mini Brand Guideline",
-    bronze: true,
-    silver: false,
+    silver: true,
     gold: true,
     platinum: true,
     enterprise: true,
   },
 
-  // ---- MARKETING ASSETS (Silver and above) ----
+  // ---- SILVER & ABOVE (marketing assets) ----
   {
     feature: "Social Media Graphics",
     bronze: false,
@@ -210,7 +202,7 @@ const comparisonRows: ComparisonRow[] = [
     enterprise: true,
   },
 
-  // ---- GOLD & ABOVE (extra marketing & web) ----
+  // ---- GOLD & ABOVE (brand & web) ----
   {
     feature: "Full Brand Identity System",
     bronze: false,
@@ -239,8 +231,8 @@ const comparisonRows: ComparisonRow[] = [
     feature: "Email Marketing System",
     bronze: false,
     silver: false,
-    gold: true, // Gold has this, Platinum does NOT (see Platinum list)
-    platinum: false,
+    gold: true,
+    platinum: true, // fixed: Platinum includes Gold’s features
     enterprise: true,
   },
   {
@@ -248,15 +240,15 @@ const comparisonRows: ComparisonRow[] = [
     bronze: false,
     silver: false,
     gold: true,
-    platinum: false, // Platinum does NOT have a full website; it has landing pages
+    platinum: true, // fixed: Platinum includes website (enhanced)
     enterprise: true,
   },
   {
-    feature: "Basic SEO Setup",
+    feature: "Mini Brand Guideline",
     bronze: false,
     silver: false,
     gold: true,
-    platinum: false, // Platinum has "SEO website" (different)
+    platinum: true,
     enterprise: true,
   },
 
@@ -303,6 +295,14 @@ const comparisonRows: ComparisonRow[] = [
   },
   {
     feature: "Analytics Setup",
+    bronze: false,
+    silver: false,
+    gold: false,
+    platinum: true,
+    enterprise: true,
+  },
+  {
+    feature: "Basic SEO Setup", // not in Gold, but in Platinum+
     bronze: false,
     silver: false,
     gold: false,
@@ -393,8 +393,8 @@ export default function PricingPlans() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   // New state
-  const [viewMode, setViewMode] = useState<"all" | "upgrades">("all");
-
+  // const [viewMode, setViewMode] = useState<"all" | "upgrades">("all");
+  const totalItems = plans.length + 1;
   // Helper to get upgrade pairs
   const upgradePairs = [
     { from: "bronze", to: "silver", fromLabel: "Bronze", toLabel: "Silver" },
@@ -416,8 +416,9 @@ export default function PricingPlans() {
     const gap = 32;
     const scrollAmount = cardWidth + gap;
     container.scrollBy({ left: scrollAmount, behavior: "smooth" });
-    setCurrentIndex((prev) => Math.min(prev + 1, plans.length - 1));
+    setCurrentIndex((prev) => Math.min(prev + 1, totalItems - 1));
   };
+
   function getDiffRows(
     planA: keyof Pick<
       ComparisonRow,
@@ -440,11 +441,12 @@ export default function PricingPlans() {
         container.querySelector("article")?.getBoundingClientRect().width || 0;
       const gap = 32;
       const newIndex = Math.round(scrollLeft / (cardWidth + gap));
-      setCurrentIndex(Math.min(newIndex, plans.length - 1));
+      setCurrentIndex(Math.min(newIndex, totalItems - 1));
     };
     container.addEventListener("scroll", handleScroll);
     return () => container.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [totalItems]);
+
 
   return (
     <section className="py-8 md:py-12 px-4 sm:px-6 lg:px-10">
@@ -473,14 +475,14 @@ export default function PricingPlans() {
               key={plan.name}
               className={`relative min-w-[280px] md:min-w-[300px] lg:min-w-[320px] flex-shrink-0 snap-start h-fit rounded-3xl p-6 hover:scale-102 transition-transform duration-400 md:p-8 shadow-sm ${
                 plan.featured
-                  ? "border-2 border-yellow-600 bg-white scale-102 hover:shadow-lg hover:scale-105"
+                  ? "border-2 border-yellow-600 bg-gray-100 scale-102 hover:shadow-lg hover:scale-105"
                   : plan.dark
-                    ? "border border-zinc-800 bg-zinc-900 text-white"
-                    : "border border-gray-200 bg-white"
+                    ? "border border-zinc-800 bg-zinc-900 text-gray-100"
+                    : "border border-gray-200 bg-gray-100"
               }`}
             >
               {plan.featured && (
-                <span className="absolute top-4 right-4 bg-yellow-600 text-white px-3 py-1 rounded-full text-xs font-medium">
+                <span className="absolute top-4 right-4 bg-yellow-600 text-gray-100 px-3 py-1 rounded-full text-xs font-medium">
                   Most Popular
                 </span>
               )}
@@ -488,7 +490,7 @@ export default function PricingPlans() {
               <span className="text-3xl">{plan.icon}</span>
 
               <h3
-                className={`mt-3 md:mt-4 text-2xl font-bold ${plan.dark ? "text-white" : "text-gray-900"}`}
+                className={`mt-3 md:mt-4 text-2xl font-bold ${plan.dark ? "text-gray-100" : "text-gray-900"}`}
               >
                 {plan.name}
               </h3>
@@ -501,7 +503,7 @@ export default function PricingPlans() {
 
               <div className="mt-6">
                 <span
-                  className={`text-4xl font-bold ${plan.dark ? "text-white" : "text-gray-900"}`}
+                  className={`text-4xl font-bold ${plan.dark ? "text-gray-100" : "text-gray-900"}`}
                 >
                   {plan.price}
                 </span>
@@ -550,10 +552,32 @@ export default function PricingPlans() {
               </button>
             </article>
           ))}
+
+          <article className="relative min-w-[280px] md:min-w-[300px] lg:min-w-[320px] flex-shrink-0 snap-start rounded-3xl p-6 md:p-8 shadow-sm border-2 border-dashed border-yellow-600 bg-yellow-50/70 hover:shadow-lg hover:scale-105 transition-all duration-400 min-h-100 flex flex-col items-center justify-center text-center self-center">
+            <div>
+              <PiPlusCircle size={48} className="text-yellow-600" />
+            <h3 className="text-2xl font-bold text-gray-900 mt-3">
+              Custom Plan
+            </h3>
+            <p className="text-gray-600 text-sm max-w-[200px] mt-1">
+              Need something tailored? Let’s build a package that fits your
+              exact needs.
+            </p>
+            <button
+              type="button"
+              className="mt-4 px-6 py-3 bg-yellow-600 text-white rounded-xl font-medium hover:bg-yellow-700 transition-colors"
+            >
+              Contact us
+            </button>
+            </div>
+          </article>
         </div>
+        
+
+        <hr className="mx-3 text-gray-100/20" />
 
         {/* Floating Next Button */}
-        {currentIndex < plans.length - 1 && (
+        {currentIndex < totalItems - 1 && (
           <button
             type="button"
             onClick={handleNext}
@@ -577,191 +601,114 @@ export default function PricingPlans() {
           </button>
         )}
       </div>
+      {/* <hr className="border-gray-300/50 border mt-12"/> */}
 
-      {/* Permanent Comparison Table with Sticky Feature Column */}
-      <div className="mt-16 md:mt-20 max-w-7xl mx-auto">
+      <div className="mt-16 md:mt-12 max-w-7xl mx-auto">
         <div className="text-center sticky inset-0 mb-8">
-          <h3 className="text-2xl font-bold text-gray-900">
+          <h3 className="text-2xl  rounded-full font-bold text-gray-100 py-2">
             Feature Comparison
           </h3>
           <p className="text-gray-500 mt-1">
             See what each plan includes at a glance.
           </p>
-          <div>
-            <div className="flex justify-center mt-5 gap-4 mb-8">
-              <button
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                  viewMode === "all"
-                    ? "bg-yellow-600 text-white"
-                    : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-                }`}
-                onClick={() => setViewMode("all")}
-              >
-                All Plans
-              </button>
-              <button
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                  viewMode === "upgrades"
-                    ? "bg-yellow-600 text-white"
-                    : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-                }`}
-                onClick={() => setViewMode("upgrades")}
-              >
-                Upgrade Views
-              </button>
-            </div>
-          </div>
         </div>
 
-        {viewMode === "all" ? (
-          // Your existing full table (keep it unchanged)
-          <div className="mt-8 max-w-7xl mx-auto overflow-x-auto">
-            <table className="w-full min-w-[700px] text-sm border-separate border-spacing-0">
+        <div className="columns-1 md:columns-2 gap-12 space-y-8 max-w-7xl mx-auto mt-8">
+          <div className="">
+            <table className="w-full text-sm border border-gray-100 h-fit">
               <thead>
-                <tr>
-                  {/* Sticky Feature column header */}
-                  <th className="sticky left-0 z-20 px-6 py-4 text-left font-medium text-gray-700 bg-gray-50 text-gray-400  border-b border-gray-100 rounded-tl-xl">
-                    Feature
+                <tr className="w-full w-fit">
+                  <th
+                    colSpan={2}
+                    className="sticky bg-gray-50 text-yellow-600 left-0 z-20 px-4 py-3 text-left text-gray-100  border-b border-gray-100"
+                  >
+                    Bronze Plan Feature
                   </th>
-                  {plans.map((plan) => (
-                    <th
-                      key={plan.name}
-                      className={`px-4 py-4 text-center border-b ${
-                        plan.featured
-                          ? "bg-yellow-600 border-yellow-200"
-                          : plan.dark
-                            ? "bg-zinc-800 border-zinc-700"
-                            : "bg-gray-50 border-gray-200"
-                      } `}
-                    >
-                      <div
-                        className={`flex flex-col items-center gap-1 ${
-                          plan.dark ? "text-white" : "text-gray-900"
-                        }`}
-                      >
-                        <span className="text-2xl">{plan.icon}</span>
-                        <span className="font-bold">{plan.name}</span>
-                        <span
-                          className={`text-xs font-medium ${
-                            plan.dark ? "text-yellow-400" : "text-yellow-600"
-                          }`}
-                        >
-                          {plan.subtitle}
-                        </span>
-                        <span
-                          className={`text-sm font-semibold ${
-                            plan.dark ? "text-white" : "text-gray-900"
-                          }`}
-                        >
-                          {plan.price}
-                        </span>
-                      </div>
-                    </th>
-                  ))}
                 </tr>
               </thead>
               <tbody>
-                {comparisonRows.map((row, i) => {
-                  const isEven = i % 2 === 0;
-                  return (
-                    <tr
-                      key={row.feature}
-                      className={isEven ? "bg-white" : "bg-gray-50/50"}
-                    >
-                      {/* Sticky Feature column cell */}
-                      <td
-                        className={`sticky left-0 z-10 px-6 py-4 w-40 font-medium text-gray-800 border-b border-gray-100 ${
-                          isEven ? "bg-white" : "bg-gray-50"
-                        }`}
-                      >
-                        {row.feature}
-                      </td>
-                      <td className="px-4 py-4 text-center border-b border-gray-100">
-                        {row.bronze ? <CheckIcon /> : <CrossIcon />}
-                      </td>
-                      <td className="px-4 py-4 text-center border-b border-gray-100">
-                        {row.silver ? <CheckIcon /> : <CrossIcon />}
-                      </td>
-                      <td className="px-4 py-4 text-center border-b border-gray-100 bg-yellow-50/50">
-                        {row.gold ? <CheckIcon /> : <CrossIcon />}
-                      </td>
-                      <td className="px-4 py-4 text-center border-b border-gray-100">
-                        {row.platinum ? <CheckIcon /> : <CrossIcon />}
-                      </td>
-                      <td className="px-4 py-4 text-center border-b border-gray-100">
-                        {row.enterprise ? <CheckIcon /> : <CrossIcon />}
-                      </td>
-                    </tr>
-                  );
+                {comparisonRows.map((row) => {
+                  if (row.bronze === true) {
+                    return (
+                      <tr key={row.feature} className={"bg-gray-50/3"}>
+                        <td
+                          className={`sticky px-4 py-3 font-medium text-gray-50  border-b border-gray-100 `}
+                        >
+                          {row.feature}
+                        </td>
+
+                        <td className="px-4 py-3 text-center text-gray-400  border-b border-gray-100">
+                          <CheckIcon />
+                        </td>
+                      </tr>
+                    );
+                  }
                 })}
               </tbody>
             </table>
           </div>
-        ) : (
-          <div className="columns-1 md:columns-2 gap-12 space-y-8 max-w-7xl mx-auto mt-8">
-            {upgradePairs.map(({ from, to, fromLabel, toLabel }) => {
-              // Filter rows where the lower plan has false and the higher has true
-              const diffRows = comparisonRows.filter(
-                (row) =>
-                  row[from as keyof ComparisonRow] === false &&
-                  row[to as keyof ComparisonRow] === true,
-              );
-              if (diffRows.length === 0) return null;
-              return (
-                <div key={`${from}-${to}`}>
-                  <h4 className="text-lg font-bold text-gray-800 mb-3">
-                    Upgrade from{" "}
-                    <span className="text-yellow-600">{fromLabel}</span> →{" "}
-                    <span className="text-yellow-600">{toLabel}</span>
-                    <span className="font-normal text-gray-500 ml-2">
-                      – what you gain
-                    </span>
-                  </h4>
-                  <div className="">
-                    <table className="w-full text-sm border border-gray-100 h-fit">
-                      <thead>
-                        <tr className="w-full w-fit">
-                          <th className="sticky left-0 z-20 px-4 py-3 text-left text-gray-100  border-b border-gray-100">
-                            Feature
-                          </th>
-                          <th className="px-4 py-3 text-center bg-gray-50 text-yellow-600  border-b border-gray-100">
-                            {fromLabel}
-                          </th>
-                          <th className="px-4 py-3 text-center bg-gray-50 text-yellow-600  border-b border-gray-100">
-                            {toLabel}
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {diffRows.map((row, idx) => {
-                          const isEven = idx % 2 === 0;
-                          return (
-                            <tr
-                              key={row.feature}
-                              className={isEven ? "" : "bg-gray-50/3"}
+          {upgradePairs.map(({ from, to, fromLabel, toLabel }) => {
+            // Filter rows where the lower plan has false and the higher has true
+            const diffRows = comparisonRows.filter(
+              (row) =>
+                row[from as keyof ComparisonRow] === false &&
+                row[to as keyof ComparisonRow] === true,
+            );
+            if (diffRows.length === 0) return null;
+            return (
+              <div key={`${from}-${to}`}>
+                <h4 className="text-lg font-bold text-gray-800 mb-3">
+                  Upgrade from{" "}
+                  <span className="text-yellow-600">{fromLabel}</span> →{" "}
+                  <span className="text-yellow-600">{toLabel}</span>
+                  <span className="font-normal text-gray-500 ml-2">
+                    – what you gain
+                  </span>
+                </h4>
+                <div className="">
+                  <table className="w-full text-sm border border-gray-100 h-fit">
+                    <thead>
+                      <tr className="w-full w-fit">
+                        <th className="sticky left-0 z-20 px-4 py-3 text-left text-gray-100  border-b border-gray-100">
+                          Feature
+                        </th>
+                        <th className="px-4 py-3 text-center bg-gray-50 text-yellow-600  border-b border-gray-100">
+                          {fromLabel}
+                        </th>
+                        <th className="px-4 py-3 text-center bg-gray-50 text-yellow-600  border-b border-gray-100">
+                          {toLabel}
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {diffRows.map((row, idx) => {
+                        const isEven = idx % 2 === 0;
+                        return (
+                          <tr
+                            key={row.feature}
+                            className={isEven ? "" : "bg-gray-50/3"}
+                          >
+                            <td
+                              className={`sticky px-4 py-3 font-medium text-gray-50  border-b border-gray-100 `}
                             >
-                              <td
-                                className={`sticky px-4 py-3 font-medium text-gray-50  border-b border-gray-100 `}
-                              >
-                                {row.feature}
-                              </td>
-                              <td className="px-4 py-3 text-center text-gray-400  border-b border-gray-100">
-                                <CrossIcon />
-                              </td>
-                              <td className="px-4 py-3 text-center text-gray-400  border-b border-gray-100">
-                                <CheckIcon />
-                              </td>
-                            </tr>
-                          );
-                        })}
-                      </tbody>
-                    </table>
-                  </div>
+                              {row.feature}
+                            </td>
+                            <td className="px-4 py-3 text-center text-gray-400  border-b border-gray-100">
+                              <CrossIcon />
+                            </td>
+                            <td className="px-4 py-3 text-center text-gray-400  border-b border-gray-100">
+                              <CheckIcon />
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
                 </div>
-              );
-            })}
-          </div>
-        )}
+              </div>
+            );
+          })}
+        </div>
       </div>
 
       <style>{`
