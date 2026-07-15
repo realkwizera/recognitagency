@@ -419,18 +419,7 @@ export default function PricingPlans() {
     setCurrentIndex((prev) => Math.min(prev + 1, totalItems - 1));
   };
 
-  function getDiffRows(
-    planA: keyof Pick<
-      ComparisonRow,
-      "bronze" | "silver" | "gold" | "platinum" | "enterprise"
-    >,
-    planB: keyof Pick<
-      ComparisonRow,
-      "bronze" | "silver" | "gold" | "platinum" | "enterprise"
-    >,
-  ) {
-    return comparisonRows.filter((row) => row[planA] !== row[planB]);
-  }
+
 
   useEffect(() => {
     const container = scrollContainerRef.current;
